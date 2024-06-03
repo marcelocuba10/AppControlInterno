@@ -1,0 +1,125 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button class="icon-menu btn-hamburguer"></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
+  <ion-grid style="border-radius: 20px;">
+    <ion-row>
+      <ion-col size="9">
+        <ion-text color="secondary">
+          <h1 style="margin-left: 20px;font-family: system-ui;color: #000;font-weight: 800;">
+            Listado de presencia laboral
+          </h1>
+        </ion-text>
+      </ion-col>
+      <ion-col size="3" style="text-align: center;">
+        <ion-icon style="font-size: 33px;margin-top: 25px;margin-left: -25px;" name="calendar-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-card class="card-st">
+      <ion-card-header style="padding-bottom: 2px;">
+        <ion-card-title style="text-decoration: underline;font-weight: bold;color: #000;font-size: 20px;">date
+        </ion-card-title>
+        <ion-grid>
+          <ion-row style="margin-left: -10px;">
+            <ion-col size="6">
+              <ion-text color="secondary">
+                <ion-card-subtitle>
+                  Hora de entrada:<br> hora entraada</ion-card-subtitle>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+              <ion-text color="secondary">
+                <ion-card-subtitle>Hora de salida:<br> hora salida</ion-card-subtitle>
+              </ion-text>
+              <ion-text color="secondary">
+                <ion-card-subtitle>Hora de salida: <br>Pendiente</ion-card-subtitle>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+
+  <!-- Skeleton screen -->
+  <!-- <div *ngIf="!schedules">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>  -->
+
+</ion-content>

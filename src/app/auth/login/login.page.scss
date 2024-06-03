@@ -1,0 +1,16 @@
+.line-middle {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid #9e9e9e; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+ } 
+
+.line-middle span { 
+    background:#fff; 
+    padding:0 10px; 
+}
+
+ion-content{
+    --background: url("https://i.ibb.co/wYkMBBD/bg-exchange.webp") no-repeat center center / cover;
+}

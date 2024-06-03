@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true" [style.--background]="scanActive?'#00000000':'#ffffff'">
+
+  <ion-grid style="border-radius: 20px;" [hidden]="scanActive">
+    <ion-row>
+      <ion-col size="9">
+        <ion-text color="secondary">
+          <h1 style="margin-left: 20px;font-family: system-ui;color: #000;font-weight: 800;">
+            Verificación de máquinas
+          </h1>
+        </ion-text>
+      </ion-col>
+      <ion-col size="3" style="text-align: center;">
+        <ion-icon style="font-size: 33px;margin-top: 25px;margin-left: -25px;" name="qr-code-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row style="text-align: center;margin-top: 30%;" [hidden]="scanActive">
+    <ion-col>
+      <img style="width: 50%; margin-top: 20px" src="./assets/scanqrcode.png"/>
+    </ion-col>
+  </ion-row>
+  <ion-row style="text-align: center;">
+    <ion-col>
+      <ion-button mode="ios" size="large" shape="round" color="tertiary" (click)="startScanner()" [hidden]="scanActive">SCAN</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="scan-button" [hidden]="!scanActive" style="text-align: center;">
+    <ion-col class="ion-no-padding">
+      <ion-button mode="ios" size="large" shape="round" color="tertiary" (click)="stopScanner()">STOP</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div class="scan-box" [hidden]="!scanActive"></div>
+
+</ion-content>

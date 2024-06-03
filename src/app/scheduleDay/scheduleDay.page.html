@@ -1,0 +1,59 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button class="icon-menu btn-hamburguer"></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content  [fullscreen]="true">
+
+  <ion-grid style="border-radius: 20px">
+    <ion-row>
+      <ion-col>
+        <ion-text color="secondary">
+          <h1 style="margin-left: 20px;text-align:center;color: #000;font-weight: 800;">
+            Marcar Horario
+          </h1>
+        </ion-text>
+        <ion-text color="secondary">
+          <h3 style="text-align: center;color:#676767;" class="head-title-center" *ngIf="user != undefined">{{ user["name"] }} {{ user["last_name"] }}</h3>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list style="margin-top: 80px;">
+
+    <ion-item>
+      <ion-label>
+        <h3 style="color:#676767;font-size: 22px;text-align: center;font-weight: 700;">{{ day }}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <h3 style="font-size: 50px;text-align: center;font-weight: 700;">{{ time }}</h3>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-grid style="border-radius: 20px;margin-top: 55px;">
+    <ion-row style="text-align: center;">
+      <ion-col>
+        <ion-button (click)="addCheckInTime()" mode="ios" size="large" shape="round" color="success" [disabled]="btnCheckIn">Marcar Entrada</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="text-align: center;">
+      <ion-col>
+        <ion-button (click)="addCheckOutTime()" mode="ios" size="large" shape="round" color="warning" [disabled]="btnCheckOut">Marcar Salida</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div style="text-align: center;color: #676767;">
+    <ion-text>
+      <p>{{ latitude }}</p>
+      <p>{{ longitude }}</p>
+    </ion-text>
+  </div>
+
+</ion-content>

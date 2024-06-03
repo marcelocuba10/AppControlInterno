@@ -1,0 +1,127 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button class="icon-menu btn-hamburguer"></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
+  <ion-grid style="border-radius: 20px;">
+    <ion-row>
+      <ion-col size="9">
+        <ion-text color="secondary">
+          <h1 style="margin-left: 20px;font-family: system-ui;color: #000;font-weight: 800;">
+            Avisos
+          </h1>
+        </ion-text>
+      </ion-col>
+      <ion-col size="3">
+        <ion-icon style="font-size: 33px;text-align: center;margin-top: 25px;margin-left: -25px;" name="notifications-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="notifications == 'Sin Avisos'">
+    <ion-list>
+      <ion-card class="card-st">
+        <ion-card-header style="padding-bottom: 2px;">
+          <ion-card-subtitle></ion-card-subtitle>
+          <ion-card-title class="ion-text-capitalize" style="font-weight: bold;color: #000;font-size: 16px;">Sin Avisos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="margin-top: 10px;">
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <div *ngIf="notifications">
+    <ion-list>
+      <ion-card *ngFor="let notification of notifications" class="card-st">
+        <ion-card-header style="padding-bottom: 2px;">
+          <ion-card-subtitle>{{ notification.date }}</ion-card-subtitle>
+          <ion-card-title class="ion-text-capitalize" style="text-decoration: underline;font-weight: bold;color: #000;font-size: 20px;">
+            {{ notification.title }}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="margin-top: 10px;">
+          {{ notification.subject }}
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <!-- Skeleton screen -->
+  <div *ngIf="!notifications">
+    <ion-list>
+      <ion-list-header>
+        <ion-label>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+        </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

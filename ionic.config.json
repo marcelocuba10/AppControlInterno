@@ -1,0 +1,7 @@
+{
+  "name": "appcontrolinterno",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Control Interno
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="text-align: center; margin-top: 20px;">
+    <h1>{{ date }}</h1>
+    <h2>{{ time }}</h2>
+    <ion-button (click)="startShift()">Iniciar Jornada</ion-button>
+  </div>
+
+  <app-explore-container name="Tab 1 page"></app-explore-container>
+</ion-content>
