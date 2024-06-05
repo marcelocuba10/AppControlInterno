@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -8,28 +9,30 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'home',
+        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'schedules',
-        loadChildren: () => import('../schedule/schedule.module').then(m => m.SchedulePageModule)
+        loadChildren: () => import('../schedule/schedule.module').then(m => m.SchedulePageModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'notifications',
         loadChildren: () => import('../notification/notification.module').then(m => m.NotificationPageModule),
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];
