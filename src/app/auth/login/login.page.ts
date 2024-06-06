@@ -24,30 +24,25 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  //Dismiss Login Modal
-  dismissLogin() {
-    this.modalController.dismiss();
-  }
-
   //login 
   async login(form: NgForm) {
-    this.appService.presentLoading(1);
-    await this.authService.login(form.value.email, form.value.password).subscribe(
-      data => {
-        //this.appService.presentToast('Logged In');
-        console.log("Logged In, Welcome!");
-      },
-      error => {
-        this.appService.presentLoading(0);
-        console.log(error);
-        this.appService.presentAlert("Oops! usuario no encontrado, verifique los datos");
-      },
-      () => {
-        this.dismissLogin();
-        this.appService.presentLoading(0);
-        this.navCtrl.navigateRoot('tabs/home');
+    try {
+      this.appService.presentLoading(1);
+      await this.authService.login(form.value.email, form.value.password).toPromise(); // Convertimos el observable en una promesa
+      console.log("Logged In, Welcome!");
+      this.appService.presentLoading(0);
+      this.navCtrl.navigateRoot('tabs/home');
+    } catch (error: any) { // Especificamos que error es de tipo any
+      this.appService.presentLoading(0);
+      console.error(error);
+      if (error.status === 401) {
+        this.appService.presentAlert("Usuario no encontrado. Verifique los datos.");
+      } else {
+        this.appService.presentAlert("Se produjo un error al iniciar sesión. Por favor, inténtelo de nuevo más tarde.");
       }
-    );
+    }
   }
+
+
 
 }

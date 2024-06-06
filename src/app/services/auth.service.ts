@@ -1,9 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { ApiService } from './api.service';
+import { Observable, throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,26 @@ export class AuthService {
       );
   }
 
+  getUserDetails(): Observable<User> {
+    // Comprueba si el usuario está autenticado
+    if (!this.isLoggedIn) {
+      return throwError(() => new Error('Usuario no autenticado'));
+    }
+  
+    // Si el usuario está autenticado, devuelve sus detalles
+    const headers = new HttpHeaders({ 'Authorization': this.token["token_type"] + " " + this.token["access_token"] });
+    return this.http.get<User>(this.env.API_URL + 'auth/user', { headers: headers }).pipe(
+      tap(user => {
+        this.user = user; // Almacena los detalles del usuario en el servicio
+      }),
+      catchError(error => {
+        console.error('Error al obtener los detalles del usuario:', error);
+        return throwError(() => new Error('No se pudieron obtener los detalles del usuario'));
+      })
+    );
+  }
+  
+
   login(email: string, password: string) {
     return this.http.post(this.env.API_URL + 'auth/login', { email, password }
     ).pipe(tap(token => {
@@ -44,12 +66,6 @@ export class AuthService {
       return token;
     }),
     );
-  }
-
-  register(name: string, email: string, password: string) {
-    //const role = "customer";
-    console.log('auth register');
-    return this.http.put(this.env.API_URL + 'auth/register', { name, email, password });
   }
 
   updateUserProfile(name: string, last_name: string, phone: string, address: string, email: string, password: string) {
