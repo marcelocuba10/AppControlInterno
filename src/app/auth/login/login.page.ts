@@ -21,10 +21,8 @@ export class LoginPage implements OnInit {
     private appService: AppService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  //login 
   async login(form: NgForm) {
     try {
       this.appService.presentLoading(1);
@@ -42,7 +40,4 @@ export class LoginPage implements OnInit {
       }
     }
   }
-
-
-
 }

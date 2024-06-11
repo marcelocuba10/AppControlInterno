@@ -9,8 +9,8 @@ import { Schedule } from '../models/schedule';
 })
 export class ApiService {
 
-  API_URL = 'https://conectafarm.com/api/';
-  //API_URL = 'http://127.0.0.1:8000/api/';
+  //API_URL = 'https://conectafarm.com/api/';
+  API_URL = 'http://127.0.0.1:8000/api/';
 
   httpHeader = {
     headers: new HttpHeaders({
@@ -38,15 +38,20 @@ export class ApiService {
     return this.http.post<Schedule>(this.API_URL + 'schedule', schedule, this.httpHeader)
       .pipe(catchError(this.errorHandler));
   }
-  public getSchedulesByUser(id: number): Observable<Schedule> {
-    return this.http.get<Schedule>(this.API_URL + 'schedule/user/' + id, this.httpHeader)
+
+  // Change the return type to Observable<Schedule[]>
+  public getSchedulesByUser(id: number): Observable<Schedule[]> {
+    return this.http.get<Schedule[]>(this.API_URL + 'schedule/user/' + id, this.httpHeader)
       .pipe(
         catchError(this.errorHandler)
-      )
+      );
   }
 
   /*** get notifications ***/
   public getNotifications(): Observable<Notification[]> {
-    return this.http.get<Notification[]>(this.API_URL + 'notifications', this.httpHeader);
+    return this.http.get<Notification[]>(this.API_URL + 'notifications', this.httpHeader)
+      .pipe(
+        catchError(this.errorHandler)
+      );
   }
 }

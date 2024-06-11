@@ -14,7 +14,6 @@ export class HomePage implements OnInit {
   time!: string;
   userName!: string;
   userId!: number;
-  public user!: User;
 
   constructor(
     private apiService: ApiService,
@@ -28,27 +27,18 @@ export class HomePage implements OnInit {
     }, 1000);
 
     this.getCurrentUser();
-
-    // Obtiene los detalles del usuario al cargar la página
-    this.authService.getUserDetails().subscribe(
-      user => {
-        this.userName = user.name; // Asigna el nombre del usuario
-        this.userId = user.id; // Asigna el ID del usuario
-        console.log(this.userId + this.userName);
-      },
-      error => {
-        console.error('Error al obtener los detalles del usuario:', error);
-      }
-    );
-
   }
 
   public getCurrentUser() {
     console.log("load getCurrentUser");
     this.authService.getUser().subscribe(
       user => {
-        this.user = user;
-        console.log(this.user);
+        this.userName = user.name; // Asigna el nombre del usuario
+        this.userId = user.id; // Asigna el ID del usuario
+        console.log(`User ID: ${this.userId}, User Name: ${this.userName}`);
+      },
+      error => {
+        console.error('Error al obtener los detalles del usuario:', error);
       }
     );
   }
@@ -60,9 +50,14 @@ export class HomePage implements OnInit {
   }
 
   startShift() {
+    if (!this.userId) {
+      console.error('User ID not defined. Unable to start shift.');
+      return;
+    }
+
     const schedule: Schedule = {
       id: 0,
-      user_id: 1, // Aquí se debería capturar el ID del usuario actualmente logueado
+      user_id: this.userId, // Captura el ID del usuario actualmente logueado
       date: this.date,
       check_in_time: this.time,
       check_out_time: '',
